@@ -17,9 +17,6 @@ const precioBNB = 250;
 
 
 
-
-
-
 //Modulo de funciones
 
 function saludar(nombre){
@@ -56,11 +53,6 @@ function calcularCantidad(monto, precio, nombreCripto){
     console.log("Felicitaciones! compraste "+cantidad+ " " +nombreCripto.toUpperCase()+" a un precio de USD"+precio)
     return cantidad
 }
-
-/* registrar(){
-    console.log("Usted compro "+ this.nombreCripto +" a USD" + this.precioCripto)
-}
- */
 
 
 //Constructor de Objetos (Clase)
