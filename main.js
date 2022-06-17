@@ -5,7 +5,7 @@
 
 let nombre = prompt("Hola! Ingrese su Nombre: ");
 
-let listaCripto = [];
+let listaCripto = [];//creo array vacio
 
 let iteraciones = prompt("Ingrese cantidad de operaciones que desea realizar: ");
 
@@ -31,20 +31,23 @@ function ingresarDatos(){
     for(let i = 0; i<iteraciones; i++){
         let nombreCripto = prompt("Ingrese criptomoneda: " )
         let monto = prompt("Ingrese monto: " )
+
         switch (nombreCripto.toUpperCase()){
             case "BTC":
                 calcularCantidad(monto,precioBTC, nombreCripto);
+                listaCripto.push(new Compra(nombreCripto,monto,cantidad));//Agrego la compra como un objeto al array
                 break;
             case "ETH":
                 calcularCantidad(monto,precioETH, nombreCripto)  
+                listaCripto.push(new Compra(nombreCripto,monto,cantidad));//Agrego la compra como un objeto al array
                 break;
             case "BNB":
                 calcularCantidad(monto,precioBNB, nombreCripto)  
+                listaCripto.push(new Compra(nombreCripto,monto,cantidad));//Agrego la compra como un objeto al array
                 break;
             default:
                 alert("Dato incorrecto")
         }
-        let compra = new Cripto(nombreCripto,)
     }
 }
 
@@ -57,6 +60,8 @@ function calcularCantidad(monto, precio, nombreCripto){
 
 //Constructor de Objetos (Clase)
 
+//Objeto Cripto (producto disponible y su precio)
+
 class Cripto{
     constructor(nombreCripto, precioCripto){
         this.nombreCripto = nombreCripto.toUpperCase();
@@ -64,9 +69,18 @@ class Cripto{
     }    
 }
 
-let btc = new Cripto("BTC",precioBTC);
-let bnb = new Cripto("BTC",precioBNB);
-let eth = new Cripto("BTC",precioETH);
+//Objeto Compra (producto comprado y monto gastado)
+
+class Compra{
+    constructor(nombreCripto, montoCripto, cantidad){
+        this.nombreCripto = nombreCripto.toUpperCase();
+        this.montoCripto = parseFloat(montoCripto);
+        this.cantidad = cantidad;
+    }    
+}
+
+
+
 
 
 
@@ -77,6 +91,6 @@ saludar(nombre.toUpperCase());
 enviarMensaje("Este es un simulador de compra de Criptomonedas. Puede elegir entre BTC, ETH o BNB");
 ingresarDatos();
 
-console.log(btc)
-console.log(bnb)
-console.log(eth)
+
+
+console.log(listaCripto)
