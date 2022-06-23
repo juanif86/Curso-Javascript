@@ -5,7 +5,9 @@
 
 let nombre = prompt("Hola! Ingrese su Nombre: ");
 
-let listaCripto = [];//creo array vacio
+const carrito = [];//creo array vacio
+
+const panel = [];//creo array vacio
 
 let iteraciones = prompt("Ingrese cantidad de operaciones que desea realizar: ");
 
@@ -15,7 +17,26 @@ const precioETH = 1500;
 
 const precioBNB = 250;
 
+//Constructor de Objetos (Clase)
 
+//Objeto Cripto (producto disponible y su precio)
+
+class Cripto {
+    constructor(nombreCripto, precioCripto){
+        this.nombreCripto = nombreCripto.toUpperCase();
+        this.precioCripto = parseInt(precioCripto);
+    }    
+}
+
+//Objeto Compra (producto comprado y monto gastado)
+
+class Compra{
+    constructor(criptoComprada, monto, cantidad){
+        this.criptoComprada = criptoComprada.toUpperCase();
+        this.monto = parseFloat(monto);
+        this.cantidad = cantidad;
+    }    
+}
 
 //Modulo de funciones
 
@@ -27,23 +48,34 @@ function enviarMensaje(mensaje){
     console.log(mensaje)
 }
 
+function mostrarPanel(e){
+    panel.forEach( (e) => {
+      console.log(e)
+    })
+  }
+
+function calcularCantidad(monto, precio){
+    cantidad = monto/precio;
+        return cantidad
+}
+
 function ingresarDatos(){
     for(let i = 0; i<iteraciones; i++){
-        let nombreCripto = prompt("Ingrese criptomoneda: " )
-        let monto = prompt("Ingrese monto: " )
+        let criptoComprada = prompt("Ingrese criptomoneda: " );
+        let monto = parseInt(prompt("Ingrese monto: " ));
 
-        switch (nombreCripto.toUpperCase()){
+        switch (criptoComprada.toUpperCase()){
             case "BTC":
-                calcularCantidad(monto,precioBTC, nombreCripto);
-                listaCripto.push(new Compra(nombreCripto,monto,cantidad));//Agrego la compra como un objeto al array
+                calcularCantidad(monto,precioBTC);
+                carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
                 break;
             case "ETH":
-                calcularCantidad(monto,precioETH, nombreCripto)  
-                listaCripto.push(new Compra(nombreCripto,monto,cantidad));//Agrego la compra como un objeto al array
+                calcularCantidad(monto,precioETH)  
+                carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
                 break;
             case "BNB":
-                calcularCantidad(monto,precioBNB, nombreCripto)  
-                listaCripto.push(new Compra(nombreCripto,monto,cantidad));//Agrego la compra como un objeto al array
+                calcularCantidad(monto,precioBNB)  
+                carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
                 break;
             default:
                 alert("Dato incorrecto")
@@ -51,35 +83,11 @@ function ingresarDatos(){
     }
 }
 
-function calcularCantidad(monto, precio, nombreCripto){
-    cantidad = monto/precio;
-    console.log("Felicitaciones! compraste "+cantidad+ " " +nombreCripto.toUpperCase()+" a un precio de USD"+precio)
-    return cantidad
+function mostrar(array) {
+    for (let i=0; i<array.length; i++){
+        console.log( "Felicitaciones! compraste "+array[i].cantidad+ " "+array[i].criptoComprada );
+    }
 }
-
-
-//Constructor de Objetos (Clase)
-
-//Objeto Cripto (producto disponible y su precio)
-
-class Cripto{
-    constructor(nombreCripto, precioCripto){
-        this.nombreCripto = nombreCripto.toUpperCase();
-        this.precioCripto = parseInt(precioCripto);
-    }    
-}
-
-//Objeto Compra (producto comprado y monto gastado)
-
-class Compra{
-    constructor(nombreCripto, montoCripto, cantidad){
-        this.nombreCripto = nombreCripto.toUpperCase();
-        this.montoCripto = parseFloat(montoCripto);
-        this.cantidad = cantidad;
-    }    
-}
-
-
 
 
 
@@ -87,10 +95,18 @@ class Compra{
 
 //Desarrollo
 
+
+btc = panel.push(new Cripto("BTC",precioBTC));
+eth = panel.push(new Cripto("ETH",precioETH));
+bnb = panel.push(new Cripto("BNB",precioBNB));
 saludar(nombre.toUpperCase());
 enviarMensaje("Este es un simulador de compra de Criptomonedas. Puede elegir entre BTC, ETH o BNB");
+mostrarPanel();
 ingresarDatos();
+mostrar(carrito);
 
 
 
-console.log(listaCripto)
+
+
+
