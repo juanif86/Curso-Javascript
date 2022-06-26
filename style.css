@@ -1,0 +1,35 @@
+h1{
+    text-align: center;
+    margin: 20px;
+    
+}
+
+.form-container{
+    margin: 50px;
+    text-align: center;
+
+    
+}
+.formulario{
+    margin: auto;
+    padding: 10px;
+    border: 1px solid gainsboro ;
+    border-radius: 5px;
+    max-width: 400px;
+    background-color: antiquewhite;
+
+}
+.form-control {
+    max-width: 300px;
+    margin: auto;
+}
+
+.form-select {
+    max-width: 300px;
+    margin: auto;
+}
+
+label{
+    font-size: 16px;
+
+}

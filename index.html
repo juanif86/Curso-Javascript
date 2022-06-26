@@ -8,32 +8,29 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
-        <h1>Bienvenido a nuestro Exchange de compra de Criptomonedas</h1>
-        <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">BTC</h5>
-              <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Comprar</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">ETH</h5>
-              <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Comprar</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">BNB</h5>
-              <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Comprar</a>
-            </div>
-        </div>
+    <div class="container">      
+      <h1>Bienvenido a nuestro Exchange de compra de Criptomonedas</h1>
+      <div class="row" id="cards">
+
+      </div>
+      <div class="form-container">
+          <form class="formulario" id="formulario">
+              <div class="mb-3">
+                  <label for="">Ingrese criptomoneda:</label>
+                      <select class="form-select my-2" aria-label="Default select example" id="cripto" placeholder="Cripto" autocomplete="off">
+                      <option value="BTC">BTC</option>
+                      <option value="ETH">ETH</option>
+                      <option value="BNB">BNB</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                  <label for="">Ingrese monto:</label>
+                  <input type="number" class="form-control  my-2" id="monto" placeholder="Monto" autocomplete="off">
+              </div>
+              <button type="submit" class="btn btn-primary boton" id="boton" >Comprar</button>
+          </form>
+      </div>
+
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

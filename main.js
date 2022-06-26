@@ -1,21 +1,18 @@
 //Objetivo del Simulador: Exchange de compra de Cryptomonedas
 
+//Definición de variables y arrays
 
-//Definición de Variables
+const productos = [
+    {id: 0, nombre: "BTC", precio: 20000},
+    {id: 1, nombre: "ETH", precio: 1200},
+    {id: 2, nombre: "BNB", precio: 200}
+]; //Array que contiene los Productos
 
-let nombre = prompt("Hola! Ingrese su Nombre: ");
+carrito = []; //Array que contiene las compras
 
-const carrito = [];//creo array vacio
+let boton = document.getElementById("boton")
+boton.addEventListener("click", getData)
 
-const panel = [];//creo array vacio
-
-let iteraciones = prompt("Ingrese cantidad de operaciones que desea realizar: ");
-
-const precioBTC = 27000;
-
-const precioETH = 1500;
-
-const precioBNB = 250;
 
 //Constructor de Objetos (Clase)
 
@@ -40,73 +37,66 @@ class Compra{
 
 //Modulo de funciones
 
-function saludar(nombre){
-    console.log("Bienvenido "+ nombre)
-}
+//Función que muestra los precios 
+productos.forEach(producto=>{
+    let card = document.createElement("card")
+    card.className = "container center"
+    card.innerHTML = `
+                    <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card-header">${producto.nombre}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Precio</h5>
+                            <p class="card-text">USD ${producto.precio}</p>
+                        </div>
+                    </div>
+      `
+    document.body.append(card); 
+})
 
-function enviarMensaje(mensaje){
-    console.log(mensaje)
-}
-
-function mostrarPanel(e){
-    panel.forEach( (e) => {
-      console.log(e)
-    })
-  }
-
-function calcularCantidad(monto, precio){
-    cantidad = monto/precio;
-        return cantidad
-}
-
-function ingresarDatos(){
-    for(let i = 0; i<iteraciones; i++){
-        let criptoComprada = prompt("Ingrese criptomoneda: " );
-        let monto = parseInt(prompt("Ingrese monto: " ));
-
+//Función que toma los datos del form, calcula la compra y arma el carrito
+function getData(){
+    event.preventDefault()
+    let criptoComprada = document.getElementById("cripto").value;
+    let monto = parseInt(document.getElementById("monto").value);
         switch (criptoComprada.toUpperCase()){
             case "BTC":
-                calcularCantidad(monto,precioBTC);
+                calcularCantidad(monto,productos[0].precio);
                 carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
+                console.log("compro btc", cantidad);
+                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[0].nombre );
+                listarCompra(cantidad, productos[0].nombre)
                 break;
             case "ETH":
-                calcularCantidad(monto,precioETH)  
+                console.log("compro eth")
+                calcularCantidad(monto,productos[1].precio)  
                 carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
+                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[1].nombre );
+                listarCompra(cantidad, productos[1].nombre)
                 break;
             case "BNB":
-                calcularCantidad(monto,precioBNB)  
+                console.log("compro bnb")
+                calcularCantidad(monto,productos[2].precio)  
                 carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
+                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[2].nombre );
+                listarCompra(cantidad, productos[2].nombre)
                 break;
             default:
                 alert("Dato incorrecto")
         }
-    }
 }
 
-function mostrar(array) {
-    for (let i=0; i<array.length; i++){
-        console.log( "Felicitaciones! compraste "+array[i].cantidad+ " "+array[i].criptoComprada );
-    }
+//Función que lista las compras
+function listarCompra(cant, nom){
+    let lista = document.createElement("ul");
+    lista.innerHTML = `<li>Felicitaciones! compraste ${cant} ${nom}</li>`;
+    document.body.append(lista);    
 }
 
-
-
-
-
-//Desarrollo
-
-
-btc = panel.push(new Cripto("BTC",precioBTC));
-eth = panel.push(new Cripto("ETH",precioETH));
-bnb = panel.push(new Cripto("BNB",precioBNB));
-saludar(nombre.toUpperCase());
-enviarMensaje("Este es un simulador de compra de Criptomonedas. Puede elegir entre BTC, ETH o BNB");
-mostrarPanel();
-ingresarDatos();
-mostrar(carrito);
-
-
-
+//Función que calcula cantidad comprada
+function calcularCantidad(monto, precio){
+    cantidad = monto/precio;
+        return cantidad
+}
 
 
 
