@@ -33,3 +33,15 @@ label{
     font-size: 16px;
 
 }
+
+.container{
+    text-align: center;
+}
+
+.bg{
+    background-color: rgb(2, 86, 88);
+}
+
+.card{
+    background-color: rgb(4, 122, 122);
+}

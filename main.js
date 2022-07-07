@@ -2,6 +2,40 @@
 
 //Definición de variables y arrays
 
+let usuario;
+let usuarioEnLS = localStorage.getItem('usuario'); 
+
+let logInBtn = document.getElementById("log-in")
+let logOutBtn = document.getElementById("log-out")
+let nameInput = document.getElementById("name")
+
+if (usuarioEnLS != null) {
+    usuario = usuarioEnLS
+} else{
+    usuario = nameInput.value
+    localStorage.setItem('usuario', usuario)
+}
+document.getElementById("bienvenida").innerHTML = `Bienvenido a nuestro Exchange de compra de Criptomonedas`
+
+
+
+logOutBtn.addEventListener('click', ()=>{
+    localStorage.removeItem('usuario');
+    logOutBtn.style.visibility = "hidden"
+    nameInput.style.visibility = "visible"
+    logInBtn.style.visibility = "visible"
+    document.getElementById("bienvenida").innerHTML = `Bienvenido a nuestro Exchange de compra de Criptomonedas. Por favor ingrese su nombre`
+})
+
+logInBtn.addEventListener('click', ()=>{
+    usuario = nameInput.value
+    localStorage.setItem('usuario', usuario)
+    logInBtn.style.visibility = "hidden"
+    nameInput.style.visibility = "hidden"
+    logOutBtn.style.visibility = "visible"
+    document.getElementById("bienvenida").innerHTML = `Bienvenido <b>${usuario}!</b> a nuestro Exchange de compra de Criptomonedas`
+})
+
 const productos = [
     {id: 0, nombre: "BTC", precio: 20000},
     {id: 1, nombre: "ETH", precio: 1200},
@@ -9,6 +43,8 @@ const productos = [
 ]; //Array que contiene los Productos
 
 carrito = []; //Array que contiene las compras
+
+
 
 let boton = document.getElementById("boton")
 boton.addEventListener("click", getData)
@@ -38,20 +74,25 @@ class Compra{
 //Modulo de funciones
 
 //Función que muestra los precios 
-productos.forEach(producto=>{
-    let card = document.createElement("card")
-    card.className = "container center"
-    card.innerHTML = `
-                    <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
-                    <div class="card-header">${producto.nombre}</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Precio</h5>
-                            <p class="card-text">USD ${producto.precio}</p>
-                        </div>
-                    </div>
-      `
-    document.body.append(card); 
-})
+
+function pintaCard(array){
+    array.forEach(producto=>{
+        let card = document.getElementById("card")
+        card.innerHTML = `
+                            <div class="card text-center" style="max-width: 200px" margin: auto auto>
+                            <div class="card-header">${producto.nombre}</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Precio</h5>
+                                    <p class="card-text">USD ${producto.precio}</p>
+                                </div>
+                            </div>           
+            `
+        row.append(card); 
+        })
+}
+
+
+
 
 //Función que toma los datos del form, calcula la compra y arma el carrito
 function getData(){
@@ -99,4 +140,6 @@ function calcularCantidad(monto, precio){
 }
 
 
+//Desarrollo
+pintaCard(productos);
 
