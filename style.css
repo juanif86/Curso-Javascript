@@ -14,9 +14,10 @@ h1{
     margin: auto;
     padding: 10px;
     border: 1px solid gainsboro ;
-    border-radius: 5px;
+    border-radius: 10px;
     max-width: 400px;
-    background-color: antiquewhite;
+    background-color: rgb(130, 172, 192);
+    
 
 }
 .form-control {
@@ -39,9 +40,13 @@ label{
 }
 
 .bg{
-    background-color: rgb(2, 86, 88);
+    background-color: rgb(208, 227, 228);
 }
 
 .card{
-    background-color: rgb(4, 122, 122);
+    background-color: rgb(130, 172, 192);
+}
+
+.input-group{
+    margin: 30px;
 }

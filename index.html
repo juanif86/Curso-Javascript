@@ -9,19 +9,24 @@
   </head>
   <body class="bg">
     <div class="container"> 
-      <h1 id="bienvenida"></h1>
-      
-      <input type="text" id="name" placeholder="Ingrese Nombre"> </br>
-      <button id="log-in">Log in</button> 
-      <button id="log-out">Log out</button>    
 
+      <h1 id="bienvenida"></h1> <!--Saludo al usuario-->
+
+      <div class="input-group"> <!--Pido nombre al usuario-->
+        <input type="text" class="form-control" placeholder="Ingrese Nombre" id="name" > </br>
+        <button class="btn btn-primary" type="button" id="log-in">Log in</button>
+        <button class="btn btn-primary" type="button" id="log-out">Log out</button>
+      </div>
+ 
 
       <div id="container">
         <div id="row">
-          <div id="card"></div>
+          <div id="card"></div> <!--Muestro los precios-->
         </div>
       </div>
-      <div class="form-container">
+
+
+      <div class="form-container"> <!--Formulario de compra-->
           <form class="formulario" id="formulario">
               <div class="mb-3">
                   <label for="">Ingrese criptomoneda:</label>
@@ -35,7 +40,7 @@
                   <label for="">Ingrese monto:</label>
                   <input type="number" class="form-control  my-2" id="monto" placeholder="Monto" autocomplete="off">
               </div>
-              <button type="submit" class="btn btn-primary boton" id="boton" >Comprar</button>
+              <button type="submit" class="btn btn-primary boton" id="botonComprar">Comprar</button>
           </form>
       </div>
 

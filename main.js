@@ -9,6 +9,19 @@ let logInBtn = document.getElementById("log-in")
 let logOutBtn = document.getElementById("log-out")
 let nameInput = document.getElementById("name")
 
+let botonComprar = document.getElementById("botonComprar")
+botonComprar.addEventListener("click", getData)
+
+const productos = [
+    {id: 0, nombre: "BTC", precio: 20000},
+    {id: 1, nombre: "ETH", precio: 1200},
+    {id: 2, nombre: "BNB", precio: 200}
+]; //Array que contiene los Productos
+
+carrito = []; //Array que contiene las compras
+
+
+//Uso del localStorage
 if (usuarioEnLS != null) {
     usuario = usuarioEnLS
 } else{
@@ -17,13 +30,12 @@ if (usuarioEnLS != null) {
 }
 document.getElementById("bienvenida").innerHTML = `Bienvenido a nuestro Exchange de compra de Criptomonedas`
 
-
-
 logOutBtn.addEventListener('click', ()=>{
     localStorage.removeItem('usuario');
     logOutBtn.style.visibility = "hidden"
     nameInput.style.visibility = "visible"
     logInBtn.style.visibility = "visible"
+    nameInput.value = "";
     document.getElementById("bienvenida").innerHTML = `Bienvenido a nuestro Exchange de compra de Criptomonedas. Por favor ingrese su nombre`
 })
 
@@ -36,18 +48,10 @@ logInBtn.addEventListener('click', ()=>{
     document.getElementById("bienvenida").innerHTML = `Bienvenido <b>${usuario}!</b> a nuestro Exchange de compra de Criptomonedas`
 })
 
-const productos = [
-    {id: 0, nombre: "BTC", precio: 20000},
-    {id: 1, nombre: "ETH", precio: 1200},
-    {id: 2, nombre: "BNB", precio: 200}
-]; //Array que contiene los Productos
-
-carrito = []; //Array que contiene las compras
 
 
 
-let boton = document.getElementById("boton")
-boton.addEventListener("click", getData)
+
 
 
 //Constructor de Objetos (Clase)
@@ -87,7 +91,7 @@ function pintaCard(array){
                                 </div>
                             </div>           
             `
-        row.append(card); 
+        body.append(card); 
         })
 }
 
