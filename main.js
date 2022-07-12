@@ -3,14 +3,16 @@
 //Definición de variables y arrays
 
 let usuario;
+
 let usuarioEnLS = localStorage.getItem('usuario'); 
 
 let logInBtn = document.getElementById("log-in")
+
 let logOutBtn = document.getElementById("log-out")
+
 let nameInput = document.getElementById("name")
 
 let botonComprar = document.getElementById("botonComprar")
-botonComprar.addEventListener("click", getData)
 
 const productos = [
     {id: 0, nombre: "BTC", precio: 20000},
@@ -18,23 +20,27 @@ const productos = [
     {id: 2, nombre: "BNB", precio: 200}
 ]; //Array que contiene los Productos
 
-carrito = []; //Array que contiene las compras
+let carrito = []; //Array que contiene las compras
+
+let cards = document.getElementById("cardProd")
+
+let valorTotal = document.getElementById("precioFinal")
+
+let suma = []
 
 
-//Uso del localStorage
-if (usuarioEnLS != null) {
-    usuario = usuarioEnLS
-} else{
-    usuario = nameInput.value
-    localStorage.setItem('usuario', usuario)
-}
+
+//Uso de Operador ternario
+usuarioEnLS != null ? usuario = usuarioEnLS : almacenaEnLS()
+
+
 document.getElementById("bienvenida").innerHTML = `Bienvenido a nuestro Exchange de compra de Criptomonedas`
 
 logOutBtn.addEventListener('click', ()=>{
     localStorage.removeItem('usuario');
-    logOutBtn.style.visibility = "hidden"
-    nameInput.style.visibility = "visible"
-    logInBtn.style.visibility = "visible"
+    logOutBtn.style.visibility = "hidden";
+    nameInput.style.visibility = "visible";
+    logInBtn.style.visibility = "visible";
     nameInput.value = "";
     document.getElementById("bienvenida").innerHTML = `Bienvenido a nuestro Exchange de compra de Criptomonedas. Por favor ingrese su nombre`
 })
@@ -48,13 +54,7 @@ logInBtn.addEventListener('click', ()=>{
     document.getElementById("bienvenida").innerHTML = `Bienvenido <b>${usuario}!</b> a nuestro Exchange de compra de Criptomonedas`
 })
 
-
-
-
-
-
-
-//Constructor de Objetos (Clase)
+//>-------------------------Constructor de Objetos (Clase)----------------------<
 
 //Objeto Cripto (producto disponible y su precio)
 
@@ -75,34 +75,38 @@ class Compra{
     }    
 }
 
-//Modulo de funciones
+//>---------------------------Modulo de funciones------------------------------------<
 
 //Función que muestra los precios 
 
 function pintaCard(array){
-    array.forEach(producto=>{
-        let card = document.getElementById("card")
-        card.innerHTML = `
-                            <div class="card text-center" style="max-width: 200px" margin: auto auto>
-                            <div class="card-header">${producto.nombre}</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Precio</h5>
-                                    <p class="card-text">USD ${producto.precio}</p>
-                                </div>
-                            </div>           
-            `
-        body.append(card); 
-        })
+    array.forEach(producto => {
+        let card = document.createElement('div')
+        card.className = "col-12 col-sm-2 m-auto mt-5"
+        card.innerHTML = `<div class="card text-center shadow-drop-2-center" style="max-width: 200px" margin: auto auto>
+                          <div class="card-header">${producto.nombre}</div>
+                            <div class="card-body">
+                            <h5 class="card-title">Precio</h5>
+                            <p class="card-text">USD ${producto.precio}</p>
+                          </div>
+                          </div>`
+        cards.append(card); 
+    })
+}
+
+//Función que almacena en localStorage
+function almacenaEnLS() {
+    usuario = nameInput.value
+    localStorage.setItem('usuario', usuario)
 }
 
 
-
-
 //Función que toma los datos del form, calcula la compra y arma el carrito
-function getData(){
-    event.preventDefault()
+function getData(e){
+    e.preventDefault()
     let criptoComprada = document.getElementById("cripto").value;
     let monto = parseInt(document.getElementById("monto").value);
+
         switch (criptoComprada.toUpperCase()){
             case "BTC":
                 calcularCantidad(monto,productos[0].precio);
@@ -130,11 +134,16 @@ function getData(){
         }
 }
 
+
+
+
 //Función que lista las compras
 function listarCompra(cant, nom){
     let lista = document.createElement("ul");
     lista.innerHTML = `<li>Felicitaciones! compraste ${cant} ${nom}</li>`;
-    document.body.append(lista);    
+    document.body.append(lista);   
+    monto.value = ""; 
+
 }
 
 //Función que calcula cantidad comprada
@@ -144,6 +153,12 @@ function calcularCantidad(monto, precio){
 }
 
 
+
+
+
 //Desarrollo
 pintaCard(productos);
+botonComprar.addEventListener("click", getData);
+
+
 
