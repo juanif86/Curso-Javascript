@@ -106,7 +106,6 @@ function getData(e){
     e.preventDefault()
     let criptoComprada = document.getElementById("cripto").value;
     let monto = parseInt(document.getElementById("monto").value);
-
         switch (criptoComprada.toUpperCase()){
             case "BTC":
                 calcularCantidad(monto,productos[0].precio);
@@ -132,6 +131,7 @@ function getData(e){
             default:
                 alert("Dato incorrecto")
         }
+
 }
 
 
@@ -139,17 +139,21 @@ function getData(e){
 
 //Función que lista las compras
 function listarCompra(cant, nom){
-    let lista = document.createElement("ul");
+    let lista = document.createElement("h3");
     lista.innerHTML = `<li>Felicitaciones! compraste ${cant} ${nom}</li>`;
+    lista.className = "list-group-item container "
     document.body.append(lista);   
     monto.value = ""; 
+    swal("Compra realizada con Exito!", "Compraste", "success", {
+        button: "Salir",
+      });
 
 }
 
 //Función que calcula cantidad comprada
 function calcularCantidad(monto, precio){
-    cantidad = monto/precio;
-        return cantidad
+    cantidad = monto/precio
+        return cantidad       
 }
 
 
