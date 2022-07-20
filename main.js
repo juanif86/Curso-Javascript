@@ -14,11 +14,11 @@ let nameInput = document.getElementById("name")
 
 let botonComprar = document.getElementById("botonComprar")
 
-const productos = [
-    {id: 0, nombre: "BTC", precio: 20000},
-    {id: 1, nombre: "ETH", precio: 1200},
-    {id: 2, nombre: "BNB", precio: 200}
-]; //Array que contiene los Productos
+
+//----------------Array que contiene los Productos-------------
+
+
+const productos = [];
 
 let carrito = []; //Array que contiene las compras
 
@@ -26,8 +26,30 @@ let cards = document.getElementById("cardProd")
 
 let valorTotal = document.getElementById("precioFinal")
 
-let suma = []
 
+
+//Me comunico con la API de criptoya.com y consulto los precios:
+fetch('https://criptoya.com/api/btc/ars/0.1')
+    .then( (resp) => resp.json() )
+    .then( (data) => {
+        console.log(data.buenbit.ask) //traigo precio de btc
+        productos.push(new Cripto("BTC", data.buenbit.ask))
+    })
+
+    
+fetch('https://criptoya.com/api/eth/ars/0.1')
+    .then( (resp) => resp.json() )
+    .then( (data) => {
+        console.log(data.buenbit.ask) //traigo precio de eth
+        productos.push(new Cripto("ETH", data.buenbit.ask))
+    })
+
+fetch('https://criptoya.com/api/bnb/ars/0.1')
+    .then( (resp) => resp.json() )
+    .then( (data) => {
+        console.log(data.buenbit.ask) //traigo precio de bnb
+        productos.push(new Cripto("BNB", data.buenbit.ask))
+    })
 
 
 //Uso de Operador ternario
@@ -108,25 +130,25 @@ function getData(e){
     let monto = parseInt(document.getElementById("monto").value);
         switch (criptoComprada.toUpperCase()){
             case "BTC":
-                calcularCantidad(monto,productos[0].precio);
+                calcularCantidad(monto,productos[0].precioCripto);
                 carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
                 console.log("compro btc", cantidad);
-                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[0].nombre );
-                listarCompra(cantidad, productos[0].nombre)
+                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[0].nombreCripto );
+                listarCompra(cantidad, productos[0].nombreCripto)
                 break;
             case "ETH":
                 console.log("compro eth")
-                calcularCantidad(monto,productos[1].precio)  
+                calcularCantidad(monto,productos[1].precioCripto)  
                 carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
-                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[1].nombre );
+                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[1].nombreCripto );
                 listarCompra(cantidad, productos[1].nombre)
                 break;
             case "BNB":
                 console.log("compro bnb")
-                calcularCantidad(monto,productos[2].precio)  
+                calcularCantidad(monto,productos[2].precioCripto)  
                 carrito.push(new Compra(criptoComprada,monto,cantidad));//Agrego la compra como un objeto al array
-                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[2].nombre );
-                listarCompra(cantidad, productos[2].nombre)
+                console.log( "Felicitaciones! compraste "+cantidad+ " "+productos[2].nombreCripto );
+                listarCompra(cantidad, productos[2].nombreCripto)
                 break;
             default:
                 alert("Dato incorrecto")
@@ -157,10 +179,9 @@ function calcularCantidad(monto, precio){
 }
 
 
-
-
-
 //Desarrollo
+console.log(productos);
+/* pintaCard(productos); */
 pintaCard(productos);
 botonComprar.addEventListener("click", getData);
 

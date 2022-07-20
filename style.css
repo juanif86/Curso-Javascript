@@ -1,7 +1,5 @@
 body{
     margin: auto;   
-
- 
 }
 
 .particles-js{
@@ -13,19 +11,15 @@ body{
 
 .bg{
     background-color: rgb(255, 255, 255);
-
 }
 
 .container{
     margin: auto;   
     position: relative;
     z-index: 99; 
-    
-  
 }
 
 .navbar{
-
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -39,9 +33,8 @@ h1{
 .form-container{
     margin: 50px;
     text-align: center;
-
-    
 }
+
 .formulario{
     margin: auto;
     padding: 10px;
@@ -67,12 +60,7 @@ h1{
 
 label{
     font-size: 16px;
-
 }
-
-
-
-
 
 .card{
     background-color: rgb(130, 172, 192);
@@ -90,14 +78,24 @@ label{
     margin: 30px;
 }
 
-.btn{
+.boton{
+
     margin: 5px;
-    max-width: 100px;
+    max-width: 90px;
+    max-height: 40px;
+    margin-left: 550px;
 }
 
-.botonera{
+
+
+.botonera{    
     border: none 1px gainsboro;
-    text-align: center;
+    text-align: right;
+    max-width: 200px;
+}
+
+.form{
+    margin-left: 500px;
 }
 
 .row{
