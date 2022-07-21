@@ -87,7 +87,6 @@ label{
 }
 
 
-
 .botonera{    
     border: none 1px gainsboro;
     text-align: right;
@@ -95,7 +94,7 @@ label{
 }
 
 .form{
-    margin-left: 500px;
+    margin-left: 450px;
 }
 
 .row{

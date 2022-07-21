@@ -34,6 +34,7 @@ fetch('https://criptoya.com/api/btc/ars/0.1')
     .then( (data) => {
         console.log(data.buenbit.ask) //traigo precio de btc
         productos.push(new Cripto("BTC", data.buenbit.ask))
+
     })
 
     
@@ -42,6 +43,7 @@ fetch('https://criptoya.com/api/eth/ars/0.1')
     .then( (data) => {
         console.log(data.buenbit.ask) //traigo precio de eth
         productos.push(new Cripto("ETH", data.buenbit.ask))
+
     })
 
 fetch('https://criptoya.com/api/bnb/ars/0.1')
@@ -49,6 +51,7 @@ fetch('https://criptoya.com/api/bnb/ars/0.1')
     .then( (data) => {
         console.log(data.buenbit.ask) //traigo precio de bnb
         productos.push(new Cripto("BNB", data.buenbit.ask))
+        pintaCard(productos);
     })
 
 
@@ -106,10 +109,10 @@ function pintaCard(array){
         let card = document.createElement('div')
         card.className = "col-12 col-sm-2 m-auto mt-5"
         card.innerHTML = `<div class="card text-center shadow-drop-2-center" style="max-width: 200px" margin: auto auto>
-                          <div class="card-header">${producto.nombre}</div>
+                          <div class="card-header">${producto.nombreCripto}</div>
                             <div class="card-body">
                             <h5 class="card-title">Precio</h5>
-                            <p class="card-text">USD ${producto.precio}</p>
+                            <p class="card-text">USD ${producto.precioCripto}</p>
                           </div>
                           </div>`
         cards.append(card); 
@@ -182,7 +185,7 @@ function calcularCantidad(monto, precio){
 //Desarrollo
 console.log(productos);
 /* pintaCard(productos); */
-pintaCard(productos);
+
 botonComprar.addEventListener("click", getData);
 
 
