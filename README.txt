@@ -37,6 +37,8 @@ El proyecto incluye los siguientes Elementos e interacciones con Javascript:
 . Librerías:
 	- SweetAlert;
         - Particles;
+. JSON:
+ 	- Uso de archivo JSON con propiedades de librería Particles;
 
 . Promesas:
         - uso de Then;
